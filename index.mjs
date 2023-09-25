@@ -26,11 +26,11 @@ const execute = async () => {
 
         // showPotions(potionsBag);
 
-        const joseph = Character.from(playerData, potionsBag);
+        const character = Character.from(playerData, potionsBag);
 
         // showCharacater(joseph);
 
-        // joseph.drinkEmAll();
+        character.drinkEmAll();
 
     }
     catch(error){
