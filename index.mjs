@@ -4,6 +4,7 @@ import { Cauldron } from "./cauldron.mjs";
 import { PotionBag } from "./potionBag.mjs";
 import { Character } from "./character.mjs";
 
+
 const execute = async () => {
     try
     {
@@ -20,10 +21,8 @@ const execute = async () => {
         //Creamos el caldero de pociones
         const cauldron = new Cauldron(ingredients);
         
-        //this 2
-        let potionsBag = new PotionBag(ingredients);
 
-        potionsBag = potionsBag.createPotions(bag, cauldron);
+        const potionsBag = PotionBag.createPotions(bag, cauldron);
 
         // showPotions(potionsBag);
 

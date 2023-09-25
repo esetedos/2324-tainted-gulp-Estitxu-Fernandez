@@ -20,7 +20,8 @@ export class Character{
     }
 
     drinkEmAll(){
-        this.potions.every(potion => {
+        
+        this.potions.potions.every(potion => {
 
         //prueba de las pociones y sus resultados
             if(potion.name.includes("Failed potion")){
