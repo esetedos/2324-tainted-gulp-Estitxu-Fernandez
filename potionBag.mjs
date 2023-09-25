@@ -1,4 +1,4 @@
-
+import { Cauldron } from "./cauldron.mjs";
 
 export class PotionBag{
     constructor(potions){
@@ -20,7 +20,8 @@ export class PotionBag{
             ingredients.splice(0, 1);
             i--;
         }
-
+        return potions;
+// console.log(potions)
 //creará y debolverá un objeto de la clase PotionBag
     }
 }
