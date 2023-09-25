@@ -1,11 +1,16 @@
-import {getData} from "./service.mjs";
+import {getData, getPlayerData} from "./service.mjs";
 import { Ingredients } from "./ingredients.mjs";
 import { Cauldron } from "./cauldron.mjs";
+import { PotionBag } from "./potionBag.mjs";
 
 const execute = async () => {
     try
     {
         const data = await getData();
+        const playerData = await getPlayerData();
+        const bag = playerData.players[0].pouch_red;
+
+        // console.log(bag);
 
         //Creamos los ingredientes
         const ingredients = Ingredients.load(data);
@@ -13,6 +18,12 @@ const execute = async () => {
         //Creamos el caldero de pociones
         const cauldron = new Cauldron(ingredients);
         
+        const potionsBag = new PotionBag(ingredients);
+
+        potionsBag = potionsBag.createPotions(bag, cauldron)
+
+        console.log(potionsBag);
+
         //Creamos pociones
         const potion1 = cauldron.createPotion("Bear Claws", "Bee");
         showPotion(potion1);
@@ -36,11 +47,11 @@ const execute = async () => {
 }
 
 function showPotion(potion){
-    console.log(`${potion.name}`);
-    console.log(`Value:         ${potion.value}`);
-    console.log(`Weight:        ${potion.weight}`);
-    console.log(`Time:          ${potion.time}`);
-    console.log(`------------------------------`);
+    // console.log(`${potion.name}`);
+    // console.log(`Value:         ${potion.value}`);
+    // console.log(`Weight:        ${potion.weight}`);
+    // console.log(`Time:          ${potion.time}`);
+    // console.log(`------------------------------`);
 }
 
 
