@@ -10,7 +10,8 @@ const execute = async () => {
         const data = await getData();
         const playersData = await getPlayerData();
         const playerData = playersData.players[0];
-        const bag = playersData.players[0].pouch_red;
+        const bag = playersData.players[0].pouch_aged;
+        //pouch_red, pouch_green, pouch_yellow, pouch_aged
 
 
         //Creamos los ingredientes
@@ -19,6 +20,7 @@ const execute = async () => {
         //Creamos el caldero de pociones
         const cauldron = new Cauldron(ingredients);
         
+        //this 2
         let potionsBag = new PotionBag(ingredients);
 
         potionsBag = potionsBag.createPotions(bag, cauldron);
@@ -27,39 +29,15 @@ const execute = async () => {
 
         const joseph = Character.from(playerData, potionsBag);
 
-        showCharacater(joseph);
+        // showCharacater(joseph);
 
-
-
-
-        //Creamos pociones
-        const potion1 = cauldron.createPotion("Bear Claws", "Bee");
-        // showPotion(potion1);
-
-        const potion2 = cauldron.createPotion("Chicken's Egg", "Chaurus Eggs");
-        // showPotion(potion2);
-        
-        const potion3 = cauldron.createPotion("Chaurus Eggs", "Bleeding Crown");
-        // showPotion(potion3);
-
-        const potion4 = cauldron.createPotion("Nightshade", "Ectoplasm");
-        // showPotion(potion4);
-
-
+        // joseph.drinkEmAll();
 
     }
     catch(error){
         //ERROR
         console.log(error.message);
     }
-}
-
-function showPotion(potion){
-    console.log(`${potion.name}`);
-    console.log(`Value:         ${potion.value}`);
-    console.log(`Weight:        ${potion.weight}`);
-    console.log(`Time:          ${potion.time}`);
-    console.log(`------------------------------`);
 }
 
 function showPotions(array){
@@ -72,15 +50,23 @@ function showPotions(array){
     })
 }
 
-function showCharacater(joseph){
-    console.log(`${joseph.name}`);
+function showCharacater(character){
+    console.log(`${character.fullName}`);
     console.log(`------------------------------`);
+    console.log(`Health:         ${character.health}`);
+    console.log(`Magick:         ${character.magick}`);
+    console.log(`Stamina:        ${character.stamina}`);
+    character.potions.map(potion => {
+        console.log(`Potion ${character.potions.indexOf(potion) + 1}:       ${potion.name}`);
+    })
+}
+
+export function showCharacaterNextMovement(joseph){
     console.log(`Health:         ${joseph.health}`);
     console.log(`Magick:         ${joseph.magick}`);
     console.log(`Stamina:        ${joseph.stamina}`);
-    joseph.potions.map(potion => {
-        console.log(`Potion ${joseph.potions.indexOf(potion) + 1}:       ${potion.name}`);
-    })
+
+    console.log(`------------------------------`);
 }
 
 
